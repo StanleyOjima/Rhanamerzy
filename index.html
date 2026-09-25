@@ -10,18 +10,21 @@
 <meta property="og:title" content="Rhanamerzy Concepts | Strategy, Public Relations and Institutional Engagement">
 <meta property="og:description" content="Strategic advisory, public relations and stakeholder engagement for organisations working across international markets.">
 <meta property="og:locale" content="en_GB">
-<!-- FAVICON · the supplied monogram artwork. The canonical URL is added at the folder build, once the domain is known. -->
-<link rel="icon" href="assets/img/favicon-64.png" sizes="64x64" type="image/png">
-<link rel="apple-touch-icon" href="assets/img/favicon-180.png">
-<!-- SHARE IMAGE · og/rhanamerzy-og-cover.jpg (1200 x 630, built by tools/build-og.py). Crawlers need an ABSOLUTE URL: at the folder
-     build, once the domain is known, replace the path in og:image and twitter:image with https://<domain>/og/rhanamerzy-og-cover.jpg -->
-<meta property="og:image" content="og/rhanamerzy-og-cover.jpg">
+<!-- FAVICON · the supplied monogram artwork, as real files beside the page (tools/make-favicon.py): favicon.ico, favicon-32.png, apple-touch-icon.png -->
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="canonical" href="https://rhanamerzy.vercel.app/">
+<meta property="og:url" content="https://rhanamerzy.vercel.app/">
+<!-- SHARE IMAGE · rhanamerzy-og-cover.jpg beside the page (1200 x 630, built by tools/build-og.py). Share previews need the ABSOLUTE address:
+     build with RC_SITE_URL=https://<the site's address> and the two image tags below carry it. -->
+<meta property="og:image" content="https://rhanamerzy.vercel.app/rhanamerzy-og-cover.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Rhanamerzy Concepts. Relationships. Strategy. Solutions.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="og/rhanamerzy-og-cover.jpg">
+<meta name="twitter:image" content="https://rhanamerzy.vercel.app/rhanamerzy-og-cover.jpg">
 <!-- ORGANISATION SCHEMA · verified facts only: legal name, the approved email and the two approved telephone numbers. No address, no domain, no claims. -->
 <script type="application/ld+json">
 {
@@ -99,6 +102,7 @@ body{ margin:0; font:400 1rem/1.5 var(--font-sans); background:var(--rc-cream); 
 img,svg,video{ display:block; max-width:100%; }
 a{ color:inherit; }
 :focus-visible{ outline:2px solid var(--rc-orange); outline-offset:3px; border-radius:2px; }
+#mobile-menu:focus, #mobile-menu:focus-visible{ outline:none; }   /* the open menu takes focus as a whole; the ring is for the items, by keyboard */
 .sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
 .skip{ position:fixed; top:12px; left:var(--col); z-index:100; transform:translateY(-200%); padding:.75rem 1rem; background:var(--rc-navy); color:var(--rc-cream); font:500 var(--fs-ui)/1 var(--font-sans); text-decoration:none; }
 .skip:focus{ transform:none; }
@@ -1600,7 +1604,7 @@ html, body{ background:var(--rc-white); }
   </div>
 </header>
 
-<div id="mobile-menu" class="menu" role="dialog" aria-modal="true" aria-label="Site navigation" hidden>
+<div id="mobile-menu" class="menu" role="dialog" aria-modal="true" aria-label="Site navigation" tabindex="-1" hidden>
   <div class="menu-inner">
     <div class="menu-top">
       <a class="wordmark" href="#top" aria-label="Rhanamerzy Concepts, home" data-menu-close>
@@ -2346,9 +2350,9 @@ html, body{ background:var(--rc-white); }
 
   var menu = document.getElementById('mobile-menu'), toggle = document.querySelector('.menu-toggle'), main = document.getElementById('main'), lastFocus = null;
   function focusables(){ return Array.prototype.slice.call(menu.querySelectorAll('a[href], button:not([disabled])')); }
-  function openMenu(){ lastFocus = document.activeElement; menu.hidden = false; menu.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; main.setAttribute('inert', ''); header.setAttribute('inert', ''); var f = focusables(); if(f.length){ f[0].focus(); } document.addEventListener('keydown', onKey); }
+  function openMenu(){ lastFocus = document.activeElement; menu.hidden = false; menu.classList.add('is-open'); toggle.setAttribute('aria-expanded', 'true'); document.documentElement.style.overflow = 'hidden'; main.setAttribute('inert', ''); header.setAttribute('inert', ''); menu.focus({ preventScroll:true }); document.addEventListener('keydown', onKey); }
   function closeMenu(){ menu.classList.remove('is-open'); menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); document.documentElement.style.overflow = ''; main.removeAttribute('inert'); header.removeAttribute('inert'); document.removeEventListener('keydown', onKey); if(lastFocus && lastFocus.focus){ lastFocus.focus(); } }
-  function onKey(e){ if(e.key === 'Escape'){ e.preventDefault(); closeMenu(); return; } if(e.key !== 'Tab'){ return; } var f = focusables(); if(!f.length){ return; } var first = f[0], last = f[f.length - 1]; if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); } else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); } }
+  function onKey(e){ if(e.key === 'Escape'){ e.preventDefault(); closeMenu(); return; } if(e.key !== 'Tab'){ return; } var f = focusables(); if(!f.length){ return; } var first = f[0], last = f[f.length - 1], cur = document.activeElement, inside = f.indexOf(cur) !== -1; if(e.shiftKey && (cur === first || !inside)){ e.preventDefault(); last.focus(); } else if(!e.shiftKey && (cur === last || !inside)){ e.preventDefault(); first.focus(); } }
   toggle.addEventListener('click', function(){ menu.hidden ? openMenu() : closeMenu(); });
   menu.querySelectorAll('[data-menu-close]').forEach(function(el){ el.addEventListener('click', function(){ closeMenu(); }); });
   window.matchMedia('(min-width: 1024px)').addEventListener('change', function(e){ if(e.matches && !menu.hidden){ closeMenu(); } });

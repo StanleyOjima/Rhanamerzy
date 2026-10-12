@@ -1944,11 +1944,7 @@ html, html:focus-within{ scroll-behavior:auto; }
 .con-tags .tags input:checked + span::before{ border-color:var(--rc-white); background:var(--rc-white); box-shadow:inset 0 0 0 3px var(--rc-orange-ink); }
 .con-tags .tags input:focus-visible + span{ outline-color:var(--rc-orange-ink); }
 .con-foot{ grid-template-columns:minmax(0, 1fr); margin-top:28px; }   
-.con .cta-cut{ display:flex; width:100%; }
-.con .cta-cut .lbl{ flex:1; justify-content:space-between; background:var(--rc-orange-ink); color:var(--rc-white); }
-.con .cta-cut .chip{ background:var(--rc-orange); color:var(--rc-white); }
-.con .cta-cut:hover .lbl{ background:#A63A02; }
-.con .cta-cut:hover .chip{ background:var(--rc-orange-deep); }
+@media (min-width:768px){ .con .cta-cut{ justify-self:start; } }
 @media (max-width:767px){
   .con-grid{ margin:44px 0 0; row-gap:0; }   
   .con-direct{ gap:22px; padding:28px var(--col) 30px; border:0; }
@@ -1959,7 +1955,6 @@ html, html:focus-within{ scroll-behavior:auto; }
   .f textarea{ border-radius:10px; }
   .f input:focus-visible{ border-color:var(--rc-orange-ink); box-shadow:none; }
   .f input:user-invalid{ border-color:var(--rc-orange-deep); box-shadow:none; }
-  .con .cta-cut .lbl{ justify-content:center; }
 }
 </style>
 <style id="rc-m-css">

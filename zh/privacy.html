@@ -1768,6 +1768,24 @@ html, html:focus-within{ scroll-behavior:auto; }
 }
 .grp-card.c2 .grp-visual{ background:#EC6836; color:var(--rc-white); }
 .grp-mark--art .maf-lockup{ display:block; width:min(100%, 250px); height:auto; }
+.hero .plate-media picture{ display:contents; }   
+.hero{ --hs:10 8 6; --veil:.14; --s0:.92; --s1:.80; --s2:.58; --s3:.32; --s4:.12; --corner:.50; --spot:0; --spot-at:66% 69%; --tl:0; }
+.hero[data-photo="showroom"]{ --veil:.06; --s1:.86; --s2:.74; --s3:.50; --s4:.20; --spot:.46; }   
+.hero .plate-scrim{ background:
+  radial-gradient(ellipse 26% 21% at var(--spot-at), rgb(var(--hs) / var(--spot)) 0%, rgb(var(--hs) / calc(var(--spot) * .5)) 55%, rgb(var(--hs) / 0) 100%),
+  linear-gradient(to top, rgb(var(--hs) / var(--s0)) 0%, rgb(var(--hs) / var(--s1)) 15%, rgb(var(--hs) / var(--s2)) 30%, rgb(var(--hs) / var(--s3)) 45%, rgb(var(--hs) / var(--s4)) 58%, rgb(var(--hs) / 0) 70%),
+  radial-gradient(ellipse 75% 70% at 0% 100%, rgb(var(--hs) / var(--corner)) 0%, rgb(var(--hs) / .22) 55%, rgb(var(--hs) / 0) 100%),
+  radial-gradient(ellipse 34% 30% at 0% 0%, rgb(var(--hs) / var(--tl)) 0%, rgb(var(--hs) / calc(var(--tl) * .45)) 55%, rgb(var(--hs) / 0) 100%),
+  linear-gradient(to bottom, rgb(var(--hs) / .46) 0%, rgb(var(--hs) / .16) 13%, rgb(var(--hs) / 0) 26%),
+  rgb(var(--hs) / var(--veil)); }
+.hero .plate-dim{ background:rgb(var(--hs)); }
+.hero-title, .hero-body{ text-shadow:0 1px 26px rgb(var(--hs) / .32); }
+@media (max-width:767px){
+  .hero .plate-scrim{ background:
+    linear-gradient(to top, rgb(var(--hs) / .94) 0%, rgb(var(--hs) / .86) 26%, rgb(var(--hs) / .62) 44%, rgb(var(--hs) / .28) 60%, rgb(var(--hs) / .08) 72%, rgb(var(--hs) / 0) 82%),
+    linear-gradient(to bottom, rgb(var(--hs) / .5) 0%, rgb(var(--hs) / .14) 12%, rgb(var(--hs) / 0) 22%),
+    rgb(var(--hs) / var(--veil)); }
+}
 </style>
 <style id="rc-m-css">
 .mg{ --mg-w:min(560px, calc(100vw - 32px)); --mg-bottom:max(16px, env(safe-area-inset-bottom)); position:relative; z-index:45; font-family:var(--font-sans); }

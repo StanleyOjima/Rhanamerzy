@@ -1786,6 +1786,9 @@ html, html:focus-within{ scroll-behavior:auto; }
     linear-gradient(to bottom, rgb(var(--hs) / .5) 0%, rgb(var(--hs) / .14) 12%, rgb(var(--hs) / 0) 22%),
     rgb(var(--hs) / var(--veil)); }
 }
+#about .about-media{ height:auto; aspect-ratio:1080 / 759; }
+#about .about-media img{ object-position:50% 50%; transform-origin:50% 50%; }
+#about .about-media::after{ content:none; }
 </style>
 <style id="rc-m-css">
 .mg{ --mg-w:min(560px, calc(100vw - 32px)); --mg-bottom:max(16px, env(safe-area-inset-bottom)); position:relative; z-index:45; font-family:var(--font-sans); }

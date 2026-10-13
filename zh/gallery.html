@@ -1956,6 +1956,15 @@ html, html:focus-within{ scroll-behavior:auto; }
   .f input:focus-visible{ border-color:var(--rc-orange-ink); box-shadow:none; }
   .f input:user-invalid{ border-color:var(--rc-orange-deep); box-shadow:none; }
 }
+.grp-card-in, .grp-card-in[data-href]:hover{ border-radius:0; box-shadow:none; }   
+.con-direct{ position:relative; isolation:isolate; overflow:hidden; background:#1C140F; }
+.con-photo{ position:absolute; inset:0; z-index:-2; display:block; width:100%; height:100%; object-fit:cover; object-position:62% 50%; }
+.con-direct::before{ content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(180deg, rgb(74 24 4 / .84) 0%, rgb(74 24 4 / .84) 28%, rgb(74 24 4 / .5) 45%, rgb(74 24 4 / .5) 58%, rgb(74 24 4 / .84) 72%, rgb(74 24 4 / .86) 100%); }
+@media (max-width:1023px){
+  .con-grid{ row-gap:0; }   
+  .con-direct::before{ background:rgb(74 24 4 / .8); }
+  .con-photo{ object-position:58% 55%; }
+}
 </style>
 <style id="rc-m-css">
 .mg{ --mg-w:min(560px, calc(100vw - 32px)); --mg-bottom:max(16px, env(safe-area-inset-bottom)); position:relative; z-index:45; font-family:var(--font-sans); }
